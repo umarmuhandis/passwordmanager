@@ -2,21 +2,20 @@ import random
 import re
 import string
 import tkinter as tk
-from PIL import Image, ImageTk
 from tkinter import messagebox
-import cairosvg
-
-cairosvg.svg2png(url="./logo.svg", write_to="./logo.png")
+from PIL import Image, ImageTk
 
 root = tk.Tk()
 root.title("Password Manager")
 
-canvas = tk.Canvas(root, width=300, height=200)
+canvas = tk.Canvas(root, width=300, height=300)
 canvas.grid(row=0, column=0, columnspan=3, pady=10)
 
-logo_image = Image.open("./logo.png") 
-logo = ImageTk.PhotoImage(logo_image)
-canvas.create_image(150, 100, image=logo)
+original_image = Image.open("logo.png")
+resized_image = original_image.resize((300, 300), Image.LANCZOS)
+logo = ImageTk.PhotoImage(resized_image)
+
+canvas.create_image(150, 150, image=logo)
 
 website_label = tk.Label(root, text="Website:")
 website_label.grid(row=1, column=0, padx=10, pady=5, sticky="e")
